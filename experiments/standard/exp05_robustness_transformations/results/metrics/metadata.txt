@@ -1,0 +1,13 @@
+container=input2.png
+payload=text.txt
+payload_sha256=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acb
+original_payload_bytes=148574
+compressed_payload_bytes=53408
+embedded_payload_bytes=71308
+compression=zlib
+compression_level=9
+encryption=fernet
+lsb=1
+resize_scale=0.75
+crop_margin_percent=5
+jpeg_quality=95

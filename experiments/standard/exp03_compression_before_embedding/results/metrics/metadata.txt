@@ -1,0 +1,10 @@
+container=input2.png
+payload=text.txt
+original_payload_bytes=148574
+compressed_payload_bytes=53408
+compression=zlib
+compression_level=9
+compression_ratio=0.3594707014686284
+compression_saving_percent=64.05292985313716
+payload_sha256=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acb
+lsb=1

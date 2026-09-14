@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Generated experiment artifacts
+experiments/standard/*/results/images/
+experiments/standard/*/results/difference_maps/
+experiments/standard/*/results/plots/
+experiments/standard/*/results/baseline/
+experiments/standard/*/results/transformed/

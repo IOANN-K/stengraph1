@@ -11,7 +11,7 @@ def analyze_images(original_path: str | Path, stego_path: str | Path) -> dict[st
     original = load_rgb(original_path).astype(np.float64)
     stego = load_rgb(stego_path).astype(np.float64)
     if original.shape != stego.shape:
-        raise ValueError("Image dimensions do not match")
+        raise ValueError("Розміри зображень не збігаються")
     difference = original - stego
     mse = float(np.mean(difference ** 2))
     changed_channels_mask = original != stego
@@ -34,7 +34,7 @@ def create_binary_difference_map(original_path: str | Path, stego_path: str | Pa
     original = load_rgb(original_path)
     stego = load_rgb(stego_path)
     if original.shape != stego.shape:
-        raise ValueError("Image dimensions do not match")
+        raise ValueError("Розміри зображень не збігаються")
     result = np.zeros_like(original)
     result[np.any(original != stego, axis=2)] = 255
     save_rgb(result, output_path)

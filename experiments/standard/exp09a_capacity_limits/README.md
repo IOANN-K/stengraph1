@@ -1,16 +1,16 @@
-# Experiment 09a
+# Експеримент 09a
 
-Capacity limit study for 1-LSB image steganography.
+Дослідження межі місткості стеганографії зображень 1-LSB.
 
-## Container
+## Контейнер
 
 `data/images/input2.png`
 
-## LSB depth
+## Глибина LSB
 
 1 LSB per RGB channel.
 
-## Capacity levels
+## Рівні місткості
 
 - 10%
 - 25%
@@ -19,21 +19,21 @@ Capacity limit study for 1-LSB image steganography.
 - 90%
 - 100%
 
-## Embedding methods
+## Методи вбудовування
 
 - sequential
 - pseudorandom
 - adaptive texture-based
 
-## Payload
+## Навантаження
 
-A deterministic pseudorandom high-entropy byte stream is used.
+Використовується детермінований псевдовипадковий байтовий потік із високою ентропією.
 
-This avoids bias caused by repeating plaintext and approximates the bit distribution of compressed or encrypted payloads.
+Це усуває упередження від повторення відкритого тексту та наближує розподіл бітів стиснутих або зашифрованих навантажень.
 
-A 32-bit payload-length header is included in the capacity calculation.
+У розрахунок місткості включено 32-бітний заголовок довжини навантаження.
 
-## Metrics
+## Метрики
 
 - decode success
 - MSE
@@ -44,8 +44,8 @@ A 32-bit payload-length header is included in the capacity calculation.
 - changed channels
 - maximum channel difference
 
-## Goal
+## Мета
 
-Determine how close 1-LSB embedding can approach the theoretical capacity of the image while maintaining acceptable image quality.
+Визначити, наскільки близько вбудовування 1-LSB може наблизитися до теоретичної місткості зображення зі збереженням прийнятної якості.
 
-Run `python3 scripts/run_experiment.py`, then `python3 scripts/plot_results.py`. Maximum payload was 1,585,148 B; all methods decoded at 100%, where ~50% of channels and ~87.5% of pixels changed. Synthetic high-entropy data limits real-payload interpretation; this is a project benchmark.
+Запустіть `python3 scripts/run_experiment.py`, потім `python3 scripts/plot_results.py`. Максимальне навантаження становило 1 585 148 B; усі методи декодувалися на 100%, коли змінювалося близько 50% каналів і 87,5% пікселів. Синтетичні високoентропійні дані обмежують інтерпретацію для реальних навантажень; це тест проєкту.

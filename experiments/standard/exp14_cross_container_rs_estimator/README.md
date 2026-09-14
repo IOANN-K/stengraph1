@@ -1,13 +1,13 @@
-# Experiment 14
+# Експеримент 14
 
-Cross-container RS embedding-rate estimation.
+Міжконтейнерне оцінювання частки вбудовування RS.
 
-## Goal
+## Мета
 
-Evaluate whether multiple RS features can estimate LSB embedding rate
-for a completely unseen image container.
+Оцінити, чи можуть кілька RS-ознак оцінювати частку вбудовування LSB
+для повністю невідомого контейнера зображення.
 
-## Dataset
+## Набір даних
 
 Stego images generated in Experiment 13.
 
@@ -32,17 +32,17 @@ Embedding methods:
 - pseudorandom
 - adaptive
 
-## Validation
+## Перевірка
 
-Leave-one-container-out cross-validation.
+Крос-валідація leave-one-container-out.
 
-For every fold:
+Для кожного фолду:
 
-- four containers are used for training;
-- one complete container is held out;
-- the held-out container is never used during model fitting.
+- чотири контейнери використовуються для навчання;
+- один повний контейнер вилучається;
+- вилучений контейнер ніколи не використовується під час підгонки моделі.
 
-## Features
+## Ознаки
 
 RS statistics include:
 
@@ -50,30 +50,30 @@ RS statistics include:
 - S_m
 - R_-m
 - S_-m
-- positive and negative RS gaps
+- додатні й від’ємні RS-розриви
 - gap ratio
-- R and S differences
+- різниці R і S
 - per-channel RS gaps
 
-## Models
+## Моделі
 
 - Ridge regression
 - Random Forest regression
 
-## Metrics
+## Метрики
 
 - mean absolute error
 - median absolute error
 - maximum absolute error
 - true vs estimated embedding rate
 
-## Important
+## Важливо
 
-The experiment tests generalization across containers rather than
-memorization of one cover image.
+Експеримент перевіряє узагальнення між контейнерами, а не
+запам’ятовування одного зображення-контейнера.
 
-## Stored result and limitation
+## Збережений результат та обмеження
 
-Ridge MAE was 5.765299 pp sequential, 4.416240 pp random, and 7.115504 pp adaptive. Random+Ridge was the strongest configuration; Random Forest was worse for every method. Each method has only 20 samples (five covers × four rates), leaving 16 training and four test samples per fold. This is a project-specific regression extension and not evidence of general performance beyond this dataset.
+MAE Ridge становила 5.765299 в. п. для sequential, 4.416240 в. п. для random і 7.115504 в. п. для adaptive. Random+Ridge був найсильнішою конфігурацією; Random Forest був гіршим для кожного методу. Кожен метод має лише 20 зразків (п’ять контейнерів × чотири частки), тобто на фолд припадає 16 навчальних і чотири тестові зразки. Це регресійне розширення, специфічне для проєкту, а не доказ загальної продуктивності поза цим набором даних.
 
-Run `python3 scripts/build_dataset.py`, then `python3 scripts/run_experiment.py` and `python3 scripts/plot_results.py` after package installation. Outputs are dataset, predictions, summary metrics, and plots under `results/`.
+Після встановлення пакета запустіть `python3 scripts/build_dataset.py`, потім `python3 scripts/run_experiment.py` і `python3 scripts/plot_results.py`. Результати — набір даних, прогнози, підсумкові метрики та графіки в `results/`.

@@ -1,24 +1,32 @@
-# Experiment Catalogue
+# Каталог експериментів
 
-All recorded outputs are under each experiment's `results/` directory. CSV schemas are preserved as written by the original runners.
+Усі записані результати розташовані в каталозі `results/` відповідного експерименту. Схеми CSV збережено такими, як їх записали початкові скрипти запуску.
 
-| Exp | Objective; inputs | Variables and methods | Main result; limitations; provenance |
+| Exp | Мета; вхідні дані | Змінні та методи | Основний результат; обмеження; походження |
 |---|---|---|---|
-| 01 | Compare placement; `input2.png`, canonical text | sequential/random/adaptive, 1 LSB; quality/recovery | Adaptive SSIM led. Original Python random and variance implementation; project comparison of established/inspired methods. |
-| 02 | Relate load to quality; same cover/payload | 10–100%, three methods | Distortion rose; one cover/payload. Project extension. |
-| 03 | Test compression | raw vs zlib level 9, three methods | Size fell 64.05% and quality improved. Standard compression in project pipeline. |
-| 04 | Test confidentiality/size | raw/encrypted/compressed/compressed+encrypted | Encryption expanded size; compress-then-encrypt balanced goals. Fernet is standard tooling; pipeline is project-specific. |
-| 05 | Test robustness | resave, optimize, resize, crop, JPEG | Lossless PNG survived; geometry/lossy operations failed. Fixed transformation parameters limit scope. |
-| 06 | Study depth | depths 1–4, three standardized methods | Error rose with depth; one cover. Standard LSB with project adaptive ranking. |
-| 07 | Test cover sensitivity | five content categories | three methods, fixed payload | Texture controlled adaptive benefit; small selected cover set. |
-| 08 | Compare adaptive rankings | variance/gradient/Laplacian; 3/5/7/9 windows | quality/recovery | Gradient 7×7 led only on this cover. Literature-inspired rankings, project parameter study. |
-| 09A | Approach theoretical capacity | deterministic high-entropy payload, 10–100% | three methods | All decoded at 100%; visual advantage vanished. Synthetic benchmark. |
-| 09B | Illustrate real text sizes | six literary files | capacity fit and quality | Moby-Dick fit; War and Peace did not. Not entropy-controlled. |
-| 10 | Basic statistical steganalysis | Exp09A images | LSB balance/entropy, PoV-style chi-square, spatial agreement | Detectable trends, but indicators are basic and sample-size-sensitive. Literature-inspired implementation. |
-| 11 | Explore RS behavior | Exp09A images | `[1,0,1,0]`, R/S/U and gaps | Gap approached zero. Clipped negative flipping makes this non-canonical exploratory RS. |
-| 12 | Estimate rate on one cover | Exp11 calibration; 15/35/60/85% tests | monotonic interpolation | Low same-cover MAE; not closed-form RS or universal. Project-specific extension. |
-| 13 | Transfer Exp12 calibration | five heterogeneous covers | three methods/rates | Global MAE rose to 13–17 pp. Negative generalization result. |
-| 14 | Learn cross-cover RS estimator | Exp13 images | Ridge/Random Forest; leave-one-cover-out | Random+Ridge MAE 4.416240 pp. Only 20 samples/method and 16 training samples/fold. |
-| 15 | Add basic/histogram/spatial features | same images/folds | Ridge/ElasticNet | MAE worsened to 14–21 pp with extreme errors. Negative project-specific result. |
+| 01 | Порівняти розміщення; `input2.png`, канонічний текст | sequential/random/adaptive, 1 LSB; якість/відновлення | Адаптивний SSIM був найкращим. Оригінальна реалізація random і дисперсії Python; порівняння усталених і натхненних методів у проєкті. |
+| 02 | Пов’язати навантаження з якістю; той самий контейнер/навантаження | 10–100%, три методи | Спотворення зросло; один контейнер/навантаження. Розширення проєкту. |
+| 03 | Перевірити стискання | raw проти zlib рівня 9, три методи | Розмір зменшився на 64,05%, а якість покращилася. Стандартне стискання в конвеєрі проєкту. |
+| 04 | Перевірити конфіденційність/розмір | raw/encrypted/compressed/compressed+encrypted | Шифрування збільшило розмір; стискання перед шифруванням збалансувало цілі. Fernet — стандартний інструмент; конвеєр специфічний для проєкту. |
+| 05 | Перевірити стійкість | повторне збереження, оптимізація, зміна розміру, обрізання, JPEG | PNG без втрат витримав; геометричні/втратні операції не спрацювали. Фіксовані параметри перетворень обмежують область висновків. |
+| 06 | Дослідити глибину | глибини 1–4, три стандартизовані методи | Похибка зросла з глибиною; один контейнер. Стандартний LSB з адаптивним ранжуванням проєкту. |
+| 07 | Перевірити чутливість контейнера | п’ять категорій вмісту | три методи, фіксоване навантаження | Текстура визначала перевагу адаптивного методу; набір контейнерів невеликий. |
+| 08 | Порівняти адаптивні ранжування | variance/gradient/Laplacian; вікна 3/5/7/9 | якість/відновлення | Градієнт 7×7 був найкращим лише на цьому контейнері. Ранжування натхнені літературою, дослідження параметрів проєкту. |
+| 09A | Наблизитися до теоретичної місткості | детерміноване високoентропійне навантаження, 10–100% | три методи | Усі декодувалися на 100%; візуальна перевага зникла. Синтетичний тест. |
+| 09B | Показати розміри реальних текстів | шість літературних файлів | відповідність місткості та якість | Moby-Dick умістився; War and Peace — ні. Ентропія не контролювалася. |
+| 10 | Базовий статистичний стегоаналіз | зображення Exp09A | баланс/ентропія LSB, хі-квадрат типу PoV, просторова узгодженість | Виявні тенденції, але індикатори базові й чутливі до розміру вибірки. Реалізація натхнена літературою. |
+| 11 | Дослідити поведінку RS | зображення Exp09A | `[1,0,1,0]`, R/S/U і розриви | Розрив наближався до нуля. Обрізання від’ємних переворотів робить це неканонічним дослідницьким RS. |
+| 12 | Оцінити частку на одному контейнері | калібрування Exp11; тести 15/35/60/85% | монотонна інтерполяція | Низька MAE на тому самому контейнері; не замкнена форма RS і не універсальний метод. Специфічне розширення проєкту. |
+| 13 | Перенести калібрування Exp12 | п’ять різнорідних контейнерів | три методи/частки | Глобальна MAE зросла до 13–17 в. п. Негативний результат узагальнення. |
+| 14 | Навчити міжконтейнерний RS-оцінювач | зображення Exp13 | Ridge/Random Forest; leave-one-container-out | MAE Random+Ridge — 4,416240 в. п. Лише 20 зразків на метод і 16 навчальних зразків на фолд. |
+| 15 | Додати базові/гістограмні/просторові ознаки | ті самі зображення/фолди | Ridge/ElasticNet | MAE погіршилася до 14–21 в. п. із крайніми похибками. Негативний результат проєкту. |
+| 09A | Наблизитися до теоретичної місткості | детерміноване високoентропійне навантаження, 10–100% | три методи | Усі декодувалися на 100%; візуальна перевага зникла. Синтетичний тест. |
+| 09B | Показати розміри реальних текстів | шість літературних файлів | відповідність місткості та якість | Moby-Dick умістився; War and Peace — ні. Ентропія не контролювалася. |
+| 10 | Базовий статистичний стегоаналіз | зображення Exp09A | баланс/ентропія LSB, хі-квадрат типу PoV, просторова узгодженість | Виявні тенденції, але індикатори базові й чутливі до розміру вибірки. Реалізація натхнена літературою. |
+| 11 | Дослідити поведінку RS | зображення Exp09A | `[1,0,1,0]`, R/S/U і розриви | Розрив наближався до нуля. Обрізання від’ємних переворотів робить це неканонічним дослідницьким RS. |
+| 12 | Оцінити частку на одному контейнері | калібрування Exp11; тести 15/35/60/85% | монотонна інтерполяція | Низька MAE на тому самому контейнері; не замкнена форма RS і не універсальний метод. Специфічне розширення проєкту. |
+| 13 | Перенести калібрування Exp12 | п’ять різнорідних контейнерів | три методи/частки | Глобальна MAE зросла до 13–17 в. п. Негативний результат узагальнення. |
+| 14 | Навчити міжконтейнерний RS-оцінювач | зображення Exp13 | Ridge/Random Forest; leave-one-cover-out | MAE Random+Ridge — 4,416240 в. п. Лише 20 зразків на метод і 16 навчальних зразків на фолд. |
+| 15 | Додати базові/гістограмні/просторові ознаки | ті самі зображення/фолди | Ridge/ElasticNet | MAE погіршилася до 14–21 в. п. із крайніми похибками. Негативний результат проєкту. |
 
-Runner scripts document exact constants and output columns; [Results](RESULTS.md) records headline stored values.
+Скрипти запуску документують точні константи й стовпці результатів; у [Результатах](RESULTS.md) записано основні збережені значення.

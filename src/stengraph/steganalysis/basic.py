@@ -32,7 +32,7 @@ def pov_chi_square(channel: np.ndarray) -> dict[str, float | int]:
 
 def spatial_lsb_statistics(channel: np.ndarray) -> dict[str, float]:
     if channel.ndim != 2 or min(channel.shape) < 2:
-        raise ValueError("Spatial statistics require a 2D channel at least 2x2")
+        raise ValueError("Для просторової статистики потрібен 2D-канал розміром щонайменше 2x2")
     lsb = (channel & 1).astype(np.uint8)
     return {"horizontal_lsb_agreement": float(np.mean(lsb[:, :-1] == lsb[:, 1:])), "vertical_lsb_agreement": float(np.mean(lsb[:-1, :] == lsb[1:, :]))}
 

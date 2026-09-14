@@ -1,12 +1,12 @@
-# Experiment 05
+# Експеримент 05
 
-Robustness of 1-LSB steganography under common image transformations.
+Стійкість стеганографії 1-LSB до поширених перетворень зображень.
 
-## Container
+## Контейнер
 
 `data/images/input2.png`
 
-## Payload pipeline
+## Конвеєр навантаження
 
 `text.txt`
 
@@ -16,33 +16,33 @@ Robustness of 1-LSB steganography under common image transformations.
 
 → 1-LSB embedding
 
-## Embedding methods
+## Методи вбудовування
 
 - sequential
 - pseudorandom
 - adaptive texture-based
 
-## Transformations
+## Перетворення
 
 - no transformation
 - PNG resave
 - PNG optimization
-- resize to 75%
-- 5% crop from each side
+- змінити розмір до 75%
+- обрізати по 5% з кожного боку
 - PNG → JPEG quality 95 → PNG
 
-## Verification
+## Перевірка
 
 After each transformation:
 
-1. extract the embedded data;
-2. decrypt it;
-3. decompress it;
-4. compare it byte-for-byte with the original payload;
-5. verify SHA-256.
+1. вилучити вбудовані дані;
+2. розшифрувати їх;
+3. розпакувати їх;
+4. порівняти їх побайтно з початковим навантаженням;
+5. перевірити SHA-256.
 
-## Goal
+## Мета
 
-Determine which common image transformations preserve or destroy the hidden payload.
+Визначити, які поширені перетворення зображення зберігають або руйнують приховане навантаження.
 
-Run `python3 scripts/run_experiment.py`, then `python3 scripts/plot_results.py`. PNG resave/optimization preserved all payloads; resize, crop, and JPEG roundtrip destroyed recovery. Conclusions apply only to these parameters. Robustness testing is project-specific.
+Запустіть `python3 scripts/run_experiment.py`, потім `python3 scripts/plot_results.py`. Повторне збереження/оптимізація PNG зберегли всі навантаження; зміна розміру, обрізання й цикл JPEG зруйнували відновлення. Висновки стосуються лише цих параметрів. Перевірка стійкості специфічна для проєкту.

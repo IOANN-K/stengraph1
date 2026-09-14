@@ -1,19 +1,19 @@
-# Reproducibility
+# Відтворюваність
 
-## Environment and installation
+## Середовище та встановлення
 
-The validated snapshot is Python 3.14.2 with Pillow 12.3.0, NumPy 2.5.3, SciPy 1.18.1, scikit-image 0.26.0, scikit-learn 1.9.1, Matplotlib 3.11.1, and cryptography 50.0.1. `pyproject.toml` is the dependency source of truth; `requirements-lock.txt` records this exact environment.
+Перевірений знімок — Python 3.14.2 із Pillow 12.3.0, NumPy 2.5.3, SciPy 1.18.1, scikit-image 0.26.0, scikit-learn 1.9.1, Matplotlib 3.11.1 і cryptography 50.0.1. `pyproject.toml` є головним джерелом залежностей; `requirements-lock.txt` фіксує саме це середовище.
 
-Install with `python3 -m pip install -e .`; add `.[dev]` for pytest. Run an individual experiment through its existing `scripts/run_experiment.py`, then its plot script where applicable. Some later experiments consume recorded images/metrics from earlier stages; follow numeric order, treating 09A before 10–12 and Exp13 image generation before 14–15 dataset building.
+Встановлюйте командою `python3 -m pip install -e .`; для pytest додайте `.[dev]`. Окремий експеримент запускайте наявним `scripts/run_experiment.py`, а потім, де потрібно, його скриптом побудови графіків. Деякі пізніші експерименти використовують записані зображення/метрики попередніх етапів; дотримуйтеся числового порядку, виконуючи 09A перед 10–12, а генерацію зображень Exp13 — перед побудовою наборів даних 14–15.
 
-## Determinism
+## Детермінованість
 
-Fixed semantic keys and seeds remain in experiment configs. Exp01's random method uses `random.Random`; standardized Exp06 uses a SHA-256-derived NumPy generator, so the two permutations are conceptually similar but not byte-identical. Exp09A/12/13 derive deterministic synthetic payloads from documented strings/cases. Exp14/15 use model `random_state=42` where relevant.
+Фіксовані семантичні ключі та початкові значення зберігаються в конфігураціях експериментів. Випадковий метод Exp01 використовує `random.Random`; стандартизований Exp06 — генератор NumPy, похідний від SHA-256, тому дві перестановки концептуально подібні, але не побайтно ідентичні. Exp09A/12/13 отримують детерміновані синтетичні навантаження із задокументованих рядків/варіантів. Exp14/15, де потрібно, використовують `random_state=42` моделі.
 
-Fernet ciphertext is intentionally randomized. A saved key supports decryption but does not make a rerun produce identical ciphertext; deterministic encryption was not introduced.
+Шифротекст Fernet навмисно рандомізований. Збережений ключ дає змогу розшифрувати дані, але не забезпечує ідентичний шифротекст під час повторного запуску; детерміноване шифрування не запроваджувалося.
 
-## Integrity and artifacts
+## Цілісність і артефакти
 
-Verify `checksums/research-inputs.sha256` and `checksums/result-metrics.sha256` with `python3 scripts/validate_repository.py`. Metric CSVs, summaries, keys, selected plots, configuration, and manifests are canonical research records. Bulk stego PNGs, difference maps, and transformed images are reproducible intermediates in principle, but existing copies are retained as historical artifacts and are not removed or rewritten by this refactor.
+Перевіряйте `checksums/research-inputs.sha256` і `checksums/result-metrics.sha256` командою `python3 scripts/validate_repository.py`. CSV з метриками, підсумки, ключі, вибрані графіки, конфігурація та маніфести є канонічними дослідницькими записами. Масові стего-PNG, карти відмінностей і перетворені зображення в принципі є відтворюваними проміжними даними, але наявні копії зберігаються як історичні артефакти й цим рефакторингом не видаляються та не переписуються.
 
-Future work should keep compact metrics/configuration/manifests and selected plots under version control, while deciding explicitly whether large intermediates need archival storage. Existing runners may overwrite paths, so reproduce in a copied checkout or back up `results/` first.
+Надалі слід зберігати під контролем версій компактні метрики/конфігурації/маніфести та вибрані графіки, окремо вирішуючи, чи потребують великі проміжні дані архівного зберігання. Наявні скрипти запуску можуть перезаписувати шляхи, тому відтворюйте результати в копії робочого дерева або спочатку створіть резервну копію `results/`.

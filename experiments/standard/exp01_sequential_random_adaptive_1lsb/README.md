@@ -1,37 +1,37 @@
-# Experiment 01
+# Експеримент 01
 
-Comparison of three 1-LSB embedding strategies:
+Порівняння трьох стратегій вбудовування 1-LSB:
 
 - sequential
 - pseudorandom
 - adaptive texture-based
 
-## Container
+## Контейнер
 
 `data/images/input2.png`
 
-## Payload
+## Навантаження
 
 `data/payload/text.txt`
 
-The same payload is used for all methods.
+Для всіх методів використовується те саме навантаження.
 
-## Methods
+## Методи
 
-### Sequential
+### Послідовний
 
-Bits are embedded sequentially into RGB channels.
+Біти послідовно вбудовуються в канали RGB.
 
-### Random
+### Випадковий
 
-RGB channel positions are pseudorandomly shuffled using a fixed key.
+Позиції каналів RGB псевдовипадково перемішуються за фіксованим ключем.
 
-### Adaptive
+### Адаптивний
 
-Pixels are ranked by local grayscale variance in a 3x3 neighborhood.
-Payload bits are embedded starting from the most textured regions.
+Пікселі ранжуються за локальною дисперсією відтінків сірого в околі 3x3.
+Біти навантаження вбудовуються, починаючи з найбільш текстурованих ділянок.
 
-## Metrics
+## Метрики
 
 - MSE
 - PSNR
@@ -40,8 +40,8 @@ Payload bits are embedded starting from the most textured regions.
 - changed channels
 - maximum channel difference
 
-## Results
+## Результати
 
-Generated files are stored in `results/`.
+Згенеровані файли зберігаються в `results/`.
 
-Run `python3 scripts/run_experiment.py` and then `python3 scripts/plot_results.py` where available after package installation. Stored SSIM was 0.99939046 sequential, 0.99958437 random, and 0.99994969 adaptive. This one-cover comparison preserves the original Python permutation/variance semantics; adaptive ranking is literature-inspired and the comparison is project-specific.
+Після встановлення пакета запустіть `python3 scripts/run_experiment.py`, а потім, де доступно, `python3 scripts/plot_results.py`. Збережений SSIM становив 0.99939046 для sequential, 0.99958437 для random і 0.99994969 для adaptive. Це порівняння одного контейнера зберігає початкову семантику перестановки/дисперсії Python; адаптивне ранжування натхнене літературою, а порівняння специфічне для проєкту.

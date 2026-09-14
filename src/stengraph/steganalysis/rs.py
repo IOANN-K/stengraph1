@@ -1,4 +1,4 @@
-"""Exploratory RS implementation preserved from Exp11, including clipped negative flipping."""
+"""Дослідницька реалізація RS, збережена з Exp11, включно з обрізанням від’ємних переворотів."""
 
 from pathlib import Path
 
@@ -26,12 +26,12 @@ def flip_negative(values: np.ndarray) -> np.ndarray:
 
 def apply_mask(groups: np.ndarray, mask: list[int]) -> np.ndarray:
     if groups.ndim != 2 or groups.shape[1] != len(mask):
-        raise ValueError("Mask length must match RS group width")
+        raise ValueError("Довжина маски має відповідати ширині групи RS")
     result = groups.astype(np.int16, copy=True)
     for index, value in enumerate(mask):
         if value == 1: result[:, index] = flip_positive(result[:, index])
         elif value == -1: result[:, index] = flip_negative(result[:, index])
-        elif value != 0: raise ValueError("RS mask values must be -1, 0, or 1")
+        elif value != 0: raise ValueError("Значення маски RS мають бути -1, 0 або 1")
     return result
 
 
@@ -42,7 +42,7 @@ def classify_groups(groups: np.ndarray, mask: list[int]) -> dict[str, int]:
 
 def prepare_groups(channel: np.ndarray) -> np.ndarray:
     flat = channel.reshape(-1); usable = len(flat) // 4 * 4
-    if not usable: raise ValueError("RS analysis requires at least four channel values")
+    if not usable: raise ValueError("Для RS-аналізу потрібно щонайменше чотири значення каналів")
     return flat[:usable].reshape(-1, 4)
 
 

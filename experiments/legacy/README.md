@@ -1,3 +1,3 @@
-# Legacy Experiments
+# Застарілі експерименти
 
-This directory preserves early exploratory scripts and historical PNG results. Names, coding style, payloads, and implementations are intentionally historical and are not the standardized API. Do not rewrite or regenerate these outputs during routine work. Reusable current code lives in `src/stengraph`; standardized experiment definitions live in `experiments/standard`.
+Цей каталог зберігає ранні дослідницькі скрипти та історичні результати PNG. Назви, стиль коду, навантаження й реалізації навмисно є історичними та не належать до стандартизованого API. Не переписуйте й не генеруйте ці результати повторно під час звичайної роботи. Актуальний код для повторного використання міститься в `src/stengraph`; визначення стандартизованих експериментів — у `experiments/standard`.

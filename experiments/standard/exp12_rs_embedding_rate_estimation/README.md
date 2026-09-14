@@ -1,21 +1,21 @@
-# Experiment 12 — Empirically Calibrated RS Rate Estimation
+# Експеримент 12 — емпірично каліброване оцінювання частки RS
 
-## Research question
+## Дослідницьке питання
 
-Can the RS gap estimate unseen embedding rates when calibration and testing use the same `input2.png` cover?
+Чи може RS-розрив оцінити невідомі частки вбудовування, якщо калібрування й тестування використовують той самий контейнер `input2.png`?
 
-## Inputs and methods
+## Вхідні дані та методи
 
-Exp11 stored RS results provide known calibration pairs (rate, mean positive-mask RS gap). Sequential, random, and adaptive stego images are tested at 15%, 35%, 60%, and 85%. Monotonic interpolation maps an observed gap to a clipped 0–100% estimate. This is not canonical closed-form RS message-length estimation.
+Збережені результати Exp11 дають відомі пари калібрування (частка, середній RS-розрив додатної маски). Послідовні, випадкові й адаптивні стего-зображення тестуються на 15%, 35%, 60% і 85%. Монотонна інтерполяція перетворює спостережений розрив на обрізану оцінку 0–100%. Це не канонічне оцінювання довжини повідомлення RS у замкненій формі.
 
-## Outputs and metrics
+## Результати та метрики
 
-`results/metrics/results.csv` stores method, true/estimated rate, absolute error, and RS gap; `results/plots/` visualizes estimates and errors. Run `python3 scripts/generate_test_images.py`, then `python3 scripts/run_experiment.py` and `python3 scripts/plot_results.py` from this experiment directory (or use their repository-relative paths after package installation).
+`results/metrics/results.csv` зберігає метод, справжню/оцінену частку, абсолютну похибку та RS-розрив; `results/plots/` візуалізує оцінки й похибки. Запустіть `python3 scripts/generate_test_images.py`, потім `python3 scripts/run_experiment.py` і `python3 scripts/plot_results.py` з каталогу цього експерименту (або використовуйте шляхи відносно репозиторію після встановлення пакета).
 
-## Result and interpretation
+## Результат та інтерпретація
 
-Stored MAE is 1.023768 pp sequential, 0.276409 pp random, and 1.119612 pp adaptive. Accuracy is excellent only within this same-container calibration regime.
+Збережена MAE становить 1.023768 в. п. для sequential, 0.276409 в. п. для random і 1.119612 в. п. для adaptive. Точність є відмінною лише в цьому режимі калібрування на тому самому контейнері.
 
-## Limitations and provenance
+## Обмеження та походження
 
-The calibration cover and test cover are identical; content transfer is not tested until Exp13. The interpolation estimator is a project-specific extension inspired by quantitative steganalysis, while the underlying RS concept is literature-established and the repository implementation is exploratory.
+Контейнер калібрування й тестовий контейнер ідентичні; перенесення між вмістами перевіряється лише в Exp13. Оцінювач інтерполяції — специфічне для проєкту розширення, натхнене кількісним стегоаналізом; базове поняття RS усталене в літературі, а реалізація репозиторію дослідницька.

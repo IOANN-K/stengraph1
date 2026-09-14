@@ -1,12 +1,12 @@
-# Experiment 09B
+# Експеримент 09B
 
-Literary payload study for 1-LSB image steganography.
+Дослідження літературних навантажень для стеганографії зображень 1-LSB.
 
-## Container
+## Контейнер
 
 `data/images/input2.png`
 
-## Payloads
+## Навантаження
 
 - alice.txt
 - jekyll_hyde.txt
@@ -15,23 +15,23 @@ Literary payload study for 1-LSB image steganography.
 - moby_dick.txt
 - war_and_peace.txt
 
-## Embedding methods
+## Методи вбудовування
 
 - sequential
 - pseudorandom
 - adaptive texture-based
 
-## LSB depth
+## Глибина LSB
 
 1 LSB.
 
-## Possible payload statuses
+## Можливі стани навантаження
 
 - EMPTY_PAYLOAD
 - CAPACITY_EXCEEDED
 - EMBEDDED
 
-## Metrics
+## Метрики
 
 - payload size
 - capacity used
@@ -43,9 +43,9 @@ Literary payload study for 1-LSB image steganography.
 - changed pixels
 - changed channels
 
-## Goal
+## Мета
 
-Evaluate how real literary texts of different sizes affect image quality
-and whether they fit into the selected PNG container.
+Оцінити, як реальні літературні тексти різного розміру впливають на якість зображення
+і чи вміщуються вони у вибраний PNG-контейнер.
 
-Run `python3 scripts/run_experiment.py`, then `python3 scripts/plot_results.py`. Moby-Dick fit at 78.0737%; War and Peace exceeded capacity at 148.0367%. Texts differ in size/content, so this is illustrative rather than entropy-controlled.
+Запустіть `python3 scripts/run_experiment.py`, потім `python3 scripts/plot_results.py`. Moby-Dick умістився за 78,0737%; War and Peace перевищив місткість за 148,0367%. Тексти відрізняються розміром і вмістом, тому цей результат ілюстративний, а не контрольований за ентропією.

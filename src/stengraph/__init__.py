@@ -1,3 +1,3 @@
-"""Reusable scientific core for the stengraph experiments."""
+"""Повторно використовуване наукове ядро експериментів stengraph."""
 
 __version__ = "0.1.0"

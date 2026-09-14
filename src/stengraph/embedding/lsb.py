@@ -1,4 +1,4 @@
-"""Standardized vectorized LSB implementation derived from validated Exp06 code."""
+"""Стандартизована векторизована реалізація LSB на основі перевіреного коду Exp06."""
 
 import hashlib
 from pathlib import Path
@@ -12,12 +12,12 @@ _RANDOM_ORDER_CACHE: dict[tuple[int, str], np.ndarray] = {}
 
 def validate_depth(depth: int) -> None:
     if depth not in range(1, 5):
-        raise ValueError("LSB depth must be between 1 and 4")
+        raise ValueError("Глибина LSB має бути від 1 до 4")
 
 
 def payload_to_bits(payload: bytes) -> np.ndarray:
     if not isinstance(payload, bytes):
-        raise TypeError("Payload must be bytes")
+        raise TypeError("Навантаження має бути байтами")
     header = len(payload).to_bytes(4, "big")
     return np.unpackbits(np.frombuffer(header + payload, dtype=np.uint8))
 
@@ -25,11 +25,11 @@ def payload_to_bits(payload: bytes) -> np.ndarray:
 def bits_to_payload(bits: np.ndarray) -> bytes:
     bits = np.asarray(bits, dtype=np.uint8).reshape(-1)
     if len(bits) < 32:
-        raise ValueError("Malformed payload: missing 32-bit length header")
+        raise ValueError("Некоректне навантаження: відсутній 32-бітний заголовок довжини")
     length = int.from_bytes(np.packbits(bits[:32]).tobytes(), "big")
     required = 32 + length * 8
     if required > len(bits):
-        raise ValueError("Encoded payload length exceeds image capacity")
+        raise ValueError("Довжина закодованого навантаження перевищує місткість зображення")
     return np.packbits(bits[32:required]).tobytes()[:length]
 
 
@@ -52,7 +52,7 @@ def extract_from_channels(channels: np.ndarray, depth: int) -> bytes:
     validate_depth(depth)
     header_chunks = (32 + depth - 1) // depth
     if len(channels) < header_chunks:
-        raise ValueError("Malformed payload: image cannot contain a length header")
+        raise ValueError("Некоректне навантаження: зображення не може містити заголовок довжини")
     mask = (1 << depth) - 1
     header_bits = chunks_to_bits(channels[:header_chunks] & mask, depth)[:32]
     length = int.from_bytes(np.packbits(header_bits).tobytes(), "big")
@@ -68,7 +68,7 @@ def _embed(image: np.ndarray, positions: np.ndarray, payload: bytes, depth: int)
     bits = payload_to_bits(payload)
     chunks = bits_to_chunks(bits, depth)
     if len(chunks) > len(positions):
-        raise ValueError(f"Payload too large: {len(chunks)} chunks required, {len(positions)} available")
+        raise ValueError(f"Навантаження надто велике: потрібно фрагментів {len(chunks)}, доступно позицій {len(positions)}")
     flat = image.reshape(-1)
     selected = positions[:len(chunks)]
     mask = np.uint8(0xFF ^ ((1 << depth) - 1))

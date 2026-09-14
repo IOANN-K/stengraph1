@@ -1,13 +1,13 @@
-# Experiment 13
+# Експеримент 13
 
-Generalization study for the RS-based embedding-rate estimator.
+Дослідження узагальнення оцінювача частки вбудовування на основі RS.
 
-## Calibration
+## Калібрування
 
-The estimator is calibrated only on `input2.png`
-using Experiment 11 results.
+Оцінювач калібрується лише на `input2.png`
+за результатами експерименту 11.
 
-## Test containers
+## Тестові контейнери
 
 - smooth light
 - smooth dark
@@ -15,40 +15,40 @@ using Experiment 11 results.
 - mixed photograph
 - artificial graphics
 
-## Unseen embedding rates
+## Невідомі частки вбудовування
 
 - 15%
 - 35%
 - 60%
 - 85%
 
-## Methods
+## Методи
 
 - sequential
 - pseudorandom
 - adaptive
 
-## Metrics
+## Метрики
 
 - estimated embedding rate
 - absolute error
 - mean absolute error (MAE)
 - RS gap
 
-## Goal
+## Мета
 
-Determine whether an RS estimator calibrated on one image
-can estimate LSB embedding rates in previously unseen image containers.
+Визначити, чи може оцінювач RS, калібрований на одному зображенні,
+оцінювати частки вбудовування LSB у раніше невідомих контейнерах зображень.
 
-A large increase in error would indicate that the estimator
-is container-specific rather than universally transferable.
+Значне зростання похибки свідчило б, що оцінювач специфічний для контейнера,
+а не універсально переносимий.
 
-## Stored result and limitation
+## Збережений результат та обмеження
 
-Global MAE was 17.036951 pp sequential, 14.829468 pp random, and 13.075887 pp adaptive. The single-cover Exp12 calibration therefore did **not** generalize reliably. Per-cover behavior differed sharply; the `photo_mixed` image, identical to `input2.png`, remained unusually accurate. Five selected covers are insufficient for broad population claims.
+Глобальна MAE становила 17.036951 в. п. для sequential, 14.829468 в. п. для random і 13.075887 в. п. для adaptive. Тому калібрування Exp12 на одному контейнері **не** узагальнилося надійно. Поведінка різних контейнерів суттєво відрізнялася; зображення `photo_mixed`, ідентичне `input2.png`, залишалося незвично точним. П’яти вибраних контейнерів недостатньо для широких висновків про генеральну сукупність.
 
-Run `python3 scripts/generate_test_images.py`, then `python3 scripts/run_experiment.py` and `python3 scripts/plot_results.py` after package installation. Outputs include stego images, `results/metrics/results.csv`, and plots.
+Після встановлення пакета запустіть `python3 scripts/generate_test_images.py`, потім `python3 scripts/run_experiment.py` і `python3 scripts/plot_results.py`. Результати включають стего-зображення, `results/metrics/results.csv` і графіки.
 
-## Provenance
+## Походження
 
-The RS concept is literature-established, while this cross-cover interpolation test is a project-specific extension.
+Поняття RS усталене в літературі, тоді як цей тест інтерполяції між контейнерами є розширенням, специфічним для проєкту.

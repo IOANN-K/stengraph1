@@ -1,29 +1,29 @@
-# Experiment 06
+# Експеримент 06
 
-Standardized study of LSB depth.
+Стандартизоване дослідження глибини LSB.
 
-## Container
+## Контейнер
 
 `data/images/input2.png`
 
-## Payload
+## Навантаження
 
 `data/payload/text.txt`
 
-## LSB depths
+## Глибини LSB
 
 - 1
 - 2
 - 3
 - 4
 
-## Embedding methods
+## Методи вбудовування
 
 - sequential
 - pseudorandom
 - adaptive texture-based
 
-## Metrics
+## Метрики
 
 - decode success
 - MSE
@@ -34,8 +34,8 @@ Standardized study of LSB depth.
 - changed channels
 - maximum channel difference
 
-## Goal
+## Мета
 
-Measure the trade-off between LSB depth, embedding capacity and visual distortion under standardized conditions.
+Виміряти компроміс між глибиною LSB, місткістю вбудовування та візуальним спотворенням за стандартизованих умов.
 
-Run `python3 scripts/run_experiment.py`, then `python3 scripts/plot_results.py`. Distortion rose with depth; adaptive retained strongest SSIM and maximum differences were 1, 3, 7, 15. One cover limits generality. LSB replacement is established; adaptive ranking is literature-inspired.
+Запустіть `python3 scripts/run_experiment.py`, потім `python3 scripts/plot_results.py`. Спотворення зростало з глибиною; адаптивний метод зберігав найвищий SSIM, а максимальні різниці становили 1, 3, 7, 15. Один контейнер обмежує узагальнення. Заміна LSB усталена; адаптивне ранжування натхнене літературою.

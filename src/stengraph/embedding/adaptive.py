@@ -1,4 +1,4 @@
-"""Stable, content-adaptive LSB ordering and Exp08 scoring variants."""
+"""Стабільне адаптивне до вмісту впорядкування LSB і варіанти оцінювання Exp08."""
 
 import hashlib
 from pathlib import Path
@@ -28,7 +28,7 @@ def variance_score(gray: np.ndarray, window_size: int) -> np.ndarray:
 
 def texture_score(image: np.ndarray, metric: str = "variance", window_size: int = 3, depth: int = 1) -> np.ndarray:
     if window_size < 1 or window_size % 2 == 0:
-        raise ValueError("Window size must be a positive odd integer")
+        raise ValueError("Розмір вікна має бути додатним непарним цілим числом")
     gray = stable_gray(image, depth)
     if metric == "variance":
         return variance_score(gray, window_size)
@@ -37,7 +37,7 @@ def texture_score(image: np.ndarray, metric: str = "variance", window_size: int 
     elif metric == "laplacian":
         score = np.abs(laplace(gray, mode="reflect"))
     else:
-        raise ValueError(f"Unknown metric: {metric}")
+        raise ValueError(f"Невідома метрика: {metric}")
     return uniform_filter(score, size=window_size, mode="reflect") if window_size > 1 else score
 
 

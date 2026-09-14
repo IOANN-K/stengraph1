@@ -2,7 +2,7 @@ from pathlib import Path
 
 
 def repository_root() -> Path:
-    """Return the repository root for an editable/source checkout."""
+    """Повернути корінь репозиторію для редагованої/початкової копії."""
     return Path(__file__).resolve().parents[2]
 
 

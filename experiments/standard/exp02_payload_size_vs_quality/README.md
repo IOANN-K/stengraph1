@@ -1,16 +1,16 @@
-# Experiment 02
+# Експеримент 02
 
-Study of the relationship between payload size and image quality.
+Дослідження зв’язку між розміром навантаження та якістю зображення.
 
-## Container
+## Контейнер
 
 `data/images/input2.png`
 
-## Payload
+## Навантаження
 
 `data/payload/text.txt`
 
-Fractions tested:
+Перевірені частки:
 
 - 10%
 - 25%
@@ -18,13 +18,13 @@ Fractions tested:
 - 75%
 - 100%
 
-## Methods
+## Методи
 
 - sequential 1-LSB
 - pseudorandom 1-LSB
 - adaptive texture-based 1-LSB
 
-## Metrics
+## Метрики
 
 - MSE
 - PSNR
@@ -33,8 +33,8 @@ Fractions tested:
 - changed channels
 - payload recovery
 
-## Goal
+## Мета
 
-Determine how increasing payload size affects image distortion and compare the three embedding strategies under identical conditions.
+Визначити, як збільшення розміру навантаження впливає на спотворення зображення, і порівняти три стратегії вбудовування за однакових умов.
 
-Run `python3 scripts/run_experiment.py`, then `python3 scripts/plot_results.py`. Outputs are images, binary maps, metric CSV, and plots under `results/`. Distortion rose with load and adaptive SSIM was stronger at lower/moderate loads. One cover and payload limit generality; the load comparison is project-specific.
+Запустіть `python3 scripts/run_experiment.py`, потім `python3 scripts/plot_results.py`. Результати — зображення, двійкові карти, CSV метрик і графіки в `results/`. Спотворення зростало з навантаженням, а адаптивний SSIM був вищим за малого/помірного навантаження. Один контейнер і одне навантаження обмежують узагальнення; порівняння навантаження специфічне для проєкту.

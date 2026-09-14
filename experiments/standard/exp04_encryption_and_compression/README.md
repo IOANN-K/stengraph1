@@ -1,45 +1,45 @@
-# Experiment 04
+# Експеримент 04
 
-Study of compression and encryption before 1-LSB embedding.
+Дослідження стискання та шифрування перед вбудовуванням 1-LSB.
 
-## Container
+## Контейнер
 
 `data/images/input2.png`
 
-## Payload
+## Навантаження
 
 `data/payload/text.txt`
 
-## Variants
+## Варіанти
 
 - raw
 - encrypted
 - compressed
 - compressed + encrypted
 
-## Compression
+## Стискання
 
 zlib level 9.
 
-## Encryption
+## Шифрування
 
-Fernet authenticated symmetric encryption.
+Симетричне автентифіковане шифрування Fernet.
 
-## Embedding methods
+## Методи вбудовування
 
 - sequential
 - pseudorandom
 - adaptive texture-based
 
-## Verification
+## Перевірка
 
-Every variant is transformed back into the original payload after extraction.
+Після вилучення кожен варіант перетворюється назад на початкове навантаження.
 
-The recovered payload must match the original byte-for-byte and by SHA-256.
+Відновлене навантаження має збігатися з початковим побайтно та за SHA-256.
 
-## Goal
+## Мета
 
-Evaluate the effect of compression and encryption on embedded payload size
-and stego-image distortion.
+Оцінити вплив стискання та шифрування на розмір вбудованого навантаження
+і спотворення стего-зображення.
 
-Run `python3 scripts/run_experiment.py`, then `python3 scripts/plot_results.py`. Encryption expanded 148,574 B to 198,180 B; compression+encryption used 71,308 B. Fernet is randomized, so a key does not reproduce identical ciphertext. The pipeline comparison is project-specific.
+Запустіть `python3 scripts/run_experiment.py`, потім `python3 scripts/plot_results.py`. Шифрування збільшило 148 574 B до 198 180 B; стискання+шифрування використало 71 308 B. Fernet рандомізований, тому ключ не відтворює ідентичний шифротекст. Порівняння конвеєра специфічне для проєкту.

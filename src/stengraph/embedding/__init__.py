@@ -1,1 +1,1 @@
-"""LSB embedding implementations."""
+"""Реалізації вбудовування LSB."""

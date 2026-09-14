@@ -1,38 +1,38 @@
-# Experiment 03
+# Експеримент 03
 
-Comparison of raw and compressed payload embedding.
+Порівняння вбудовування необробленого та стиснутого навантаження.
 
-## Container
+## Контейнер
 
 `data/images/input2.png`
 
-## Payload
+## Навантаження
 
 `data/payload/text.txt`
 
-## Compression
+## Стискання
 
-The payload is compressed using zlib level 9 before embedding.
+Перед вбудовуванням навантаження стискається zlib рівня 9.
 
-Two variants are compared:
+Порівнюються два варіанти:
 
 - raw payload
 - zlib-compressed payload
 
-## Embedding methods
+## Методи вбудовування
 
 - sequential 1-LSB
 - pseudorandom 1-LSB
 - adaptive texture-based 1-LSB
 
-## Verification
+## Перевірка
 
-After extraction, compressed payloads are decompressed and compared
-byte-for-byte with the original `text.txt`.
+Після вилучення стиснуті навантаження розпаковуються та порівнюються
+побайтно з початковим `text.txt`.
 
-SHA-256 is also verified.
+Також перевіряється SHA-256.
 
-## Metrics
+## Метрики
 
 - embedded payload size
 - compression ratio
@@ -45,9 +45,9 @@ SHA-256 is also verified.
 - changed channels
 - maximum channel difference
 
-## Goal
+## Мета
 
-Determine whether compressing the payload before steganographic embedding
-reduces image distortion while preserving complete payload recovery.
+Визначити, чи зменшує стискання навантаження перед стеганографічним вбудовуванням
+спотворення зображення зі збереженням повного відновлення навантаження.
 
-Run `python3 scripts/run_experiment.py`, then `python3 scripts/plot_results.py`. Stored payload size fell from 148,574 B to 53,408 B (64.05%), improving quality for all methods. Results are payload-specific; zlib is standard while this pipeline comparison is project-specific.
+Запустіть `python3 scripts/run_experiment.py`, потім `python3 scripts/plot_results.py`. Збережений розмір навантаження зменшився зі 148 574 B до 53 408 B (64,05%), що покращило якість для всіх методів. Результати специфічні для навантаження; zlib є стандартним, а це порівняння конвеєра специфічне для проєкту.

@@ -1,19 +1,19 @@
-# Experiment 15 — Hybrid Steganalysis Features
+# Експеримент 15 — гібридні ознаки стегоаналізу
 
-## Research question
+## Дослідницьке питання
 
-Do RS, LSB balance/entropy, histogram chi-square, and spatial features improve cross-container embedding-rate estimation?
+Чи покращують RS, баланс/ентропія LSB, хі-квадрат гістограми та просторові ознаки оцінювання частки вбудовування між контейнерами?
 
-## Inputs and methods
+## Вхідні дані та методи
 
-The five Exp13 containers provide 20 samples per embedding method (four rates each). Ridge and ElasticNet use leave-one-container-out validation: each fold trains on 16 samples and tests four from a completely held-out cover. Outputs are `dataset.csv`, prediction `results.csv`, `summary.csv`, and plots under `results/`.
+П’ять контейнерів Exp13 дають по 20 зразків на метод вбудовування (по чотири частки). Ridge і ElasticNet використовують перевірку leave-one-container-out: кожен фолд навчається на 16 зразках і тестується на чотирьох з повністю вилученого контейнера. Результати — `dataset.csv`, `results.csv` прогнозів, `summary.csv` і графіки в `results/`.
 
-Run `python3 scripts/build_dataset.py`, `python3 scripts/run_experiment.py`, then `python3 scripts/plot_results.py` after installing the package.
+Після встановлення пакета запустіть `python3 scripts/build_dataset.py`, `python3 scripts/run_experiment.py`, а потім `python3 scripts/plot_results.py`.
 
-## Stored result
+## Збережений результат
 
-Best MAE was 21.197310 pp sequential (ElasticNet), 19.270442 pp random (ElasticNet), and 14.308920 pp adaptive (Ridge). Severe domain-shift failures included estimates clipped to 0% and 100%.
+Найкраща MAE становила 21.197310 в. п. для sequential (ElasticNet), 19.270442 в. п. для random (ElasticNet) і 14.308920 в. п. для adaptive (Ridge). Значні помилки перенесення між доменами включали оцінки, обрізані до 0% і 100%.
 
-## Interpretation, limitations, and provenance
+## Інтерпретація, обмеження та походження
 
-Hybrid features made generalization substantially worse than Exp14. More features were not an improvement; this negative result is part of the research record. The dataset is extremely small, feature distributions vary by cover, and conclusions must not be generalized. The combination and regression design are project-specific; basic/RS concepts are literature-inspired implementations.
+Гібридні ознаки суттєво погіршили узагальнення порівняно з Exp14. Більша кількість ознак не дала покращення; цей негативний результат є частиною дослідницького запису. Набір даних надзвичайно малий, розподіли ознак різняться між контейнерами, тому висновки не слід узагальнювати. Комбінація ознак і дизайн регресії специфічні для проєкту; базові та RS-поняття реалізовано з натхненням літературою.

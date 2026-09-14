@@ -1,7 +1,7 @@
-"""Exp01-compatible 1-LSB behavior.
+"""Сумісна з Exp01 поведінка 1-LSB.
 
-This module deliberately preserves Python ``random.Random`` placement and the
-original float64 local-variance ordering used by Exp01–Exp05 and Exp07.
+Цей модуль навмисно зберігає розміщення Python ``random.Random`` і початкове
+впорядкування локальної дисперсії float64, використане в Exp01–Exp05 та Exp07.
 """
 
 import random
@@ -23,16 +23,16 @@ def _framed(payload: bytes) -> str:
 
 def _decode(bits: str) -> bytes:
     if len(bits) < 32:
-        raise ValueError("Malformed payload: missing length header")
+        raise ValueError("Некоректне навантаження: відсутній заголовок довжини")
     length = int(bits[:32], 2); required = 32 + length * 8
     if required > len(bits):
-        raise ValueError("Encoded payload length exceeds image capacity")
+        raise ValueError("Довжина закодованого навантаження перевищує місткість зображення")
     return bytes(int(bits[index:index + 8], 2) for index in range(32, required, 8))
 
 
 def embed_sequential(input_path: str | Path, output_path: str | Path, payload: bytes) -> None:
     image = Image.open(input_path).convert("RGB"); pixels = [list(pixel) for pixel in image.getdata()]; bits = _framed(payload)
-    if len(bits) > len(pixels) * 3: raise ValueError("Payload too large")
+    if len(bits) > len(pixels) * 3: raise ValueError("Навантаження надто велике")
     for index, bit in enumerate(bits):
         pixel, channel = divmod(index, 3); pixels[pixel][channel] = (pixels[pixel][channel] & 0b11111110) | int(bit)
     image.putdata([tuple(pixel) for pixel in pixels]); image.save(output_path)
@@ -49,7 +49,7 @@ def _random_positions(capacity: int) -> list[int]:
 
 def embed_random(input_path: str | Path, output_path: str | Path, payload: bytes) -> None:
     image = Image.open(input_path).convert("RGB"); pixels = [list(pixel) for pixel in image.getdata()]; bits = _framed(payload)
-    if len(bits) > len(pixels) * 3: raise ValueError("Payload too large")
+    if len(bits) > len(pixels) * 3: raise ValueError("Навантаження надто велике")
     for bit, position in zip(bits, _random_positions(len(pixels) * 3)):
         pixel, channel = divmod(position, 3); pixels[pixel][channel] = (pixels[pixel][channel] & 0b11111110) | int(bit)
     image.putdata([tuple(pixel) for pixel in pixels]); image.save(output_path)
@@ -76,7 +76,7 @@ def _adaptive_positions(array: np.ndarray) -> list[tuple[int, int]]:
 
 def embed_adaptive(input_path: str | Path, output_path: str | Path, payload: bytes) -> None:
     image = Image.open(input_path).convert("RGB"); array = np.array(image, dtype=np.uint8); bits = _framed(payload)
-    if len(bits) > array.size: raise ValueError("Payload too large")
+    if len(bits) > array.size: raise ValueError("Навантаження надто велике")
     index = 0
     for y, x in _adaptive_positions(array):
         for channel in range(3):

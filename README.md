@@ -1,22 +1,22 @@
 # stengraph
 
-`stengraph` is an educational research repository for PNG least-significant-bit (LSB) steganography, image-quality measurement, and basic steganalysis. It is not a production secure steganographic system. The completed program ends at Exp15; Exp09 is split into 09A and 09B.
+`stengraph` — навчальний дослідницький репозиторій зі стеганографії PNG із використанням найменш значущого біта (LSB), вимірювання якості зображень і базового стегоаналізу. Це не захищена стеганографічна система для промислового використання. Завершена програма закінчується на Exp15; Exp09 поділено на 09A і 09B.
 
-## Research questions
+## Дослідницькі питання
 
-The experiments compare sequential, pseudorandom, and texture-adaptive placement; payload size, compression, encryption, transformations, LSB depth, cover content, and capacity; and whether statistical, RS, and regression estimators detect or quantify embedding across unseen containers.
+Експерименти порівнюють послідовне, псевдовипадкове й адаптивне до текстури розміщення; розмір корисного навантаження, стискання, шифрування, перетворення, глибину LSB, вміст контейнера та місткість; а також те, чи виявляють або кількісно оцінюють статистичні, RS- і регресійні оцінювачі вбудовування на невідомих контейнерах.
 
-## Repository structure
+## Структура репозиторію
 
-- `src/stengraph/`: reusable scientific code.
-- `data/`: cover images and payloads; `data/payload/text.txt` is canonical.
-- `experiments/legacy/`: preserved exploratory work and outputs.
-- `experiments/standard/`: Exp01–Exp15 definitions and recorded results.
-- `docs/`, `tests/`, `checksums/`: documentation, focused tests, and integrity manifests.
+- `src/stengraph/`: повторно використовуваний науковий код.
+- `data/`: зображення-контейнери й корисні навантаження; `data/payload/text.txt` є канонічним.
+- `experiments/legacy/`: збережені дослідницькі роботи та результати.
+- `experiments/standard/`: визначення Exp01–Exp15 і записані результати.
+- `docs/`, `tests/`, `checksums/`: документація, цільові тести й маніфести цілісності.
 
-## Installation
+## Встановлення
 
-The validated environment is Python 3.14.2.
+Перевірене середовище — Python 3.14.2.
 
 ```bash
 python3 -m venv .venv
@@ -25,45 +25,45 @@ python3 -m pip install --upgrade pip
 python3 -m pip install -e .
 ```
 
-For tests, install `python3 -m pip install -e '.[dev]'`. Exact validated versions are in `requirements-lock.txt`.
+Для тестів встановіть `python3 -m pip install -e '.[dev]'`. Точні перевірені версії наведено в `requirements-lock.txt`.
 
-## Reproducibility and data
+## Відтворюваність і дані
 
-Synthetic payloads and placement use documented fixed seeds/keys. Exp01 preserves its historical `random.Random` permutation; later vectorized experiments use NumPy permutation. Fernet ciphertext is intentionally randomized and is not byte-identical from the key alone. `input2.png` is the main cover; Exp07 adds five varied covers. Exp09B uses six public-domain texts. Existing outputs are historical records and must not be casually overwritten. See [Reproducibility](docs/REPRODUCIBILITY.md).
+Синтетичні навантаження й розміщення використовують задокументовані фіксовані початкові значення/ключі. Exp01 зберігає історичну перестановку `random.Random`; пізніші векторизовані експерименти використовують перестановку NumPy. Шифротекст Fernet навмисно рандомізований і не є побайтно ідентичним лише за наявності ключа. `input2.png` — основний контейнер; Exp07 додає п’ять різноманітних контейнерів. Exp09B використовує шість текстів із суспільного надбання. Наявні результати є історичними записами, їх не слід бездумно перезаписувати. Див. [Відтворюваність](docs/REPRODUCIBILITY.md).
 
-## Experiment index
+## Покажчик експериментів
 
-| ID | Main question | Key measure | Headline conclusion |
+| ID | Головне питання | Ключовий показник | Основний висновок |
 |---|---|---|---|
-| [01](experiments/standard/exp01_sequential_random_adaptive_1lsb/README.md) | Placement | SSIM | Adaptive preserved structure best. |
-| [02](experiments/standard/exp02_payload_size_vs_quality/README.md) | Payload size | quality | Distortion rose with load. |
-| [03](experiments/standard/exp03_compression_before_embedding/README.md) | Compression | bytes/SSIM | 148,574 B compressed to 53,408 B. |
-| [04](experiments/standard/exp04_encryption_and_compression/README.md) | Compression + Fernet | size/SSIM | Compress-then-encrypt balanced size/confidentiality. |
-| [05](experiments/standard/exp05_robustness_transformations/README.md) | Robustness | recovery | PNG survived; resize/crop/JPEG did not. |
-| [06](experiments/standard/exp06_lsb_depth_study/README.md) | Depth 1–4 | quality | Distortion rose; max error was 1, 3, 7, 15. |
-| [07](experiments/standard/exp07_container_content_sensitivity/README.md) | Cover content | SSIM | Adaptive benefit depended on texture. |
-| [08](experiments/standard/exp08_adaptive_parameter_study/README.md) | Adaptive parameters | SSIM | Gradient 7×7 led on one cover only. |
-| [09A](experiments/standard/exp09a_capacity_limits/README.md) | Capacity limit | recovery | All methods decoded at 100%; advantage vanished. |
-| [09B](experiments/standard/exp09b_literary_payloads/README.md) | Literary payloads | fit | Moby-Dick fit; War and Peace did not. |
-| [10](experiments/standard/exp10_basic_steganalysis/README.md) | Basic statistics | chi-square | Statistics randomized with load. |
-| [11](experiments/standard/exp11_rs_analysis/README.md) | Exploratory RS | RS gap | Gap approached zero near full embedding. |
-| [12](experiments/standard/exp12_rs_embedding_rate_estimation/README.md) | Same-cover estimation | MAE | Accurate within its calibration regime. |
-| [13](experiments/standard/exp13_rs_generalization/README.md) | Calibration transfer | MAE | Single-cover calibration generalized poorly. |
-| [14](experiments/standard/exp14_cross_container_rs_estimator/README.md) | RS regression | MAE | Random+Ridge led on a tiny dataset. |
-| [15](experiments/standard/exp15_hybrid_steganalysis/README.md) | Hybrid features | MAE | More features worsened generalization. |
+| [01](experiments/standard/exp01_sequential_random_adaptive_1lsb/README.md) | Розміщення | SSIM | Адаптивний метод найкраще зберігав структуру. |
+| [02](experiments/standard/exp02_payload_size_vs_quality/README.md) | Розмір навантаження | якість | Спотворення зростало разом із навантаженням. |
+| [03](experiments/standard/exp03_compression_before_embedding/README.md) | Стискання | байти/SSIM | 148 574 B стиснуто до 53 408 B. |
+| [04](experiments/standard/exp04_encryption_and_compression/README.md) | Стискання + Fernet | розмір/SSIM | Стискання перед шифруванням збалансувало розмір і конфіденційність. |
+| [05](experiments/standard/exp05_robustness_transformations/README.md) | Стійкість | відновлення | PNG витримав; зміна розміру/обрізання/JPEG — ні. |
+| [06](experiments/standard/exp06_lsb_depth_study/README.md) | Глибина 1–4 | якість | Спотворення зростало; максимальна похибка становила 1, 3, 7, 15. |
+| [07](experiments/standard/exp07_container_content_sensitivity/README.md) | Вміст контейнера | SSIM | Перевага адаптивного методу залежала від текстури. |
+| [08](experiments/standard/exp08_adaptive_parameter_study/README.md) | Адаптивні параметри | SSIM | Градієнт 7×7 був найкращим лише на одному контейнері. |
+| [09A](experiments/standard/exp09a_capacity_limits/README.md) | Межа місткості | відновлення | Усі методи декодувалися на 100%; перевага зникла. |
+| [09B](experiments/standard/exp09b_literary_payloads/README.md) | Літературні навантаження | відповідність місткості | Moby-Dick умістився; War and Peace — ні. |
+| [10](experiments/standard/exp10_basic_steganalysis/README.md) | Базова статистика | хі-квадрат | Із навантаженням статистика ставала більш випадковою. |
+| [11](experiments/standard/exp11_rs_analysis/README.md) | Дослідницький RS | RS-розрив | За майже повного вбудовування розрив наближався до нуля. |
+| [12](experiments/standard/exp12_rs_embedding_rate_estimation/README.md) | Оцінювання на тому самому контейнері | MAE | У межах режиму калібрування оцінювання було точним. |
+| [13](experiments/standard/exp13_rs_generalization/README.md) | Перенесення калібрування | MAE | Калібрування на одному контейнері узагальнювалося погано. |
+| [14](experiments/standard/exp14_cross_container_rs_estimator/README.md) | RS-регресія | MAE | Random+Ridge був найкращим на малому наборі даних. |
+| [15](experiments/standard/exp15_hybrid_steganalysis/README.md) | Гібридні ознаки | MAE | Більша кількість ознак погіршила узагальнення. |
 
-## Main findings and provenance
+## Основні висновки та походження
 
-Adaptive placement can improve structural similarity at moderate loads and in textured covers, but the advantage is cover-dependent and disappears near capacity. Compression reduces distortion; raw LSB is fragile under geometric/lossy processing. Same-cover estimation can be accurate while cross-cover estimation remains difficult; Exp13 and Exp15 are valid negative results.
+Адаптивне розміщення може покращувати структурну подібність за помірних навантажень і на текстурованих контейнерах, але перевага залежить від контейнера та зникає поблизу місткості. Стискання зменшує спотворення; необроблений LSB нестійкий до геометричних і втратних перетворень. Оцінювання на тому самому контейнері може бути точним, тоді як оцінювання між контейнерами залишається складним; Exp13 і Exp15 є коректними негативними результатами.
 
-LSB substitution, PSNR, SSIM, chi-square concepts, and RS concepts are literature-established. The exact adaptive rankings, simplified Pair-of-Values-style statistic, and clipped RS code are literature-inspired project implementations. The experiment sequence and empirical estimators are project-specific extensions. See [Methodology](docs/METHODOLOGY.md), [Results](docs/RESULTS.md), and [References](docs/REFERENCES.md).
+Заміна LSB, поняття PSNR, SSIM, хі-квадрату та RS усталені в літературі. Точні адаптивні ранжування, спрощена статистика типу Pair-of-Values і RS-код з обрізанням є реалізаціями проєкту, натхненними літературою. Послідовність експериментів і емпіричні оцінювачі є специфічними розширеннями цього проєкту. Див. [Методологію](docs/METHODOLOGY.md), [Результати](docs/RESULTS.md) і [Джерела](docs/REFERENCES.md).
 
-## Running and limitations
+## Запуск і обмеження
 
-After editable installation, existing commands remain valid, for example:
+Після встановлення в режимі редагування наявні команди залишаються чинними, наприклад:
 
 ```bash
 python3 experiments/standard/exp12_rs_embedding_rate_estimation/scripts/run_experiment.py
 ```
 
-Runners may overwrite outputs; use a copy when regeneration is intended. Validate with `pytest` and `python3 scripts/validate_repository.py`. The cover set and ML datasets are small; Exp08 is cover-specific; Exp11 is exploratory; Exp12 is same-cover interpolation; conclusions are observations, not population-level proof.
+Скрипти запуску можуть перезаписувати результати; для регенерації використовуйте копію. Перевіряйте репозиторій командами `pytest` і `python3 scripts/validate_repository.py`. Набір контейнерів і ML-набори даних малі; Exp08 специфічний для контейнера; Exp11 дослідницький; Exp12 виконує інтерполяцію на тому самому контейнері; висновки є спостереженнями, а не доказом на рівні генеральної сукупності.

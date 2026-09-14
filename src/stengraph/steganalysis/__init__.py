@@ -1,1 +1,1 @@
-"""Basic and RS steganalysis routines."""
+"""Базові процедури стегоаналізу та RS-аналізу."""

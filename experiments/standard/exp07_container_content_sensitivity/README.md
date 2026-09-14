@@ -1,20 +1,20 @@
-# Experiment 07
+# Експеримент 07
 
-Study of how image content affects 1-LSB steganographic distortion.
+Дослідження впливу вмісту зображення на стеганографічне спотворення 1-LSB.
 
-## Payload
+## Навантаження
 
 `data/payload/text.txt`
 
-## Container categories
+## Категорії контейнерів
 
-- smooth light image
-- smooth dark image
-- textured natural image
-- mixed photographic image
-- artificial graphics
+- однорідне світле зображення
+- однорідне темне зображення
+- текстуроване природне зображення
+- змішане фотографічне зображення
+- штучна графіка
 
-## Embedding methods
+## Методи вбудовування
 
 - sequential
 - pseudorandom
@@ -24,7 +24,7 @@ Study of how image content affects 1-LSB steganographic distortion.
 
 1 bit per RGB channel.
 
-## Metrics
+## Метрики
 
 - decode success
 - MSE
@@ -35,8 +35,8 @@ Study of how image content affects 1-LSB steganographic distortion.
 - changed channels
 - container capacity usage
 
-## Goal
+## Мета
 
-Determine how image texture and visual structure affect the distortion caused by LSB embedding, and whether adaptive embedding provides greater benefits on some types of containers than others.
+Визначити, як текстура та візуальна структура зображення впливають на спотворення від вбудовування LSB і чи дає адаптивне вбудовування більші переваги на одних типах контейнерів, ніж на інших.
 
-Run `python3 scripts/run_experiment.py`, then `python3 scripts/plot_results.py`. Adaptive benefit was strongest in textured content and weaker in smooth covers. Five selected images do not represent a population. The cross-content design is project-specific.
+Запустіть `python3 scripts/run_experiment.py`, потім `python3 scripts/plot_results.py`. Перевага адаптивного методу була найбільшою на текстурованому вмісті й меншою на однорідних контейнерах. П’ять вибраних зображень не репрезентують генеральну сукупність. Дизайн порівняння вмісту специфічний для проєкту.
